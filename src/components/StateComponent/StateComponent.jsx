@@ -24,7 +24,7 @@ export class StateComponent extends Component {
     }
 
     countPositiveFeedbackPercentage() {
-        return this.state.good / this.countTotalFeedback() * 100
+        return Math.floor(this.state.good / this.countTotalFeedback() * 100)
     }
     
 
@@ -72,7 +72,7 @@ export class StateComponent extends Component {
                     <li className="resultItem"><p>Neutral: {neutral}</p></li>
                     <li className="resultItem"><p>Bad: {bad}</p></li>
                     <li className="resultItem"><p>Total: {this.countTotalFeedback()}</p></li>
-                    <li className="resultItem"><p>Bad: {this.countPositiveFeedbackPercentage()}</p></li>
+                    <li className="resultItem"><p>Positive fitback: {this.countPositiveFeedbackPercentage()}%</p></li>
              </ul>
          </div>
         )

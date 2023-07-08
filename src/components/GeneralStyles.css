@@ -1,0 +1,15 @@
+ul,
+p {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+body {
+  padding: 50px;
+}
+
+.btnList {
+  display: flex;
+  gap: 50px;
+}

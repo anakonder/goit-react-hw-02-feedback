@@ -1,4 +1,4 @@
-import StateComponent from "./Card/StateComponent"
+import StateComponent from "./StateComponent/StateComponent"
 
 export const App = () => {
 

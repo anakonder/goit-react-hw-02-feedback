@@ -17,7 +17,16 @@ export class StateComponent extends Component {
             bad: 0    
         }
     }
+    
+    countTotalFeedback() {
+        let total = this.state.good + this.state.neutral + this.state.bad
+        return total 
+    }
 
+    countPositiveFeedbackPercentage() {
+        return this.state.good / this.countTotalFeedback() * 100
+    }
+    
 
     render() {
         const {title, statistic} = this.props
@@ -59,14 +68,18 @@ export class StateComponent extends Component {
              </ul>
                 <h2>{statistic}</h2>
              <ul className="resultList">
-                    <li className="resultItem">Good: {good}</li>
-                 <li className="resultItem">Neutral: {neutral}</li>
-                 <li className="resultItem">Bad: {bad}</li>
+                    <li className="resultItem"><p>Good: {good}</p></li>
+                    <li className="resultItem"><p>Neutral: {neutral}</p></li>
+                    <li className="resultItem"><p>Bad: {bad}</p></li>
+                    <li className="resultItem"><p>Total: {this.countTotalFeedback()}</p></li>
+                    <li className="resultItem"><p>Bad: {this.countPositiveFeedbackPercentage()}</p></li>
              </ul>
          </div>
         )
     }
 }
+
+
 
 
 export default StateComponent;

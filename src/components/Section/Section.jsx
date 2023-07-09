@@ -11,3 +11,11 @@ const Section = ({title}) => {
 
 
 export default Section;
+
+
+
+
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+}

@@ -7,8 +7,6 @@ export const App = () => {
     <div>
       <StateComponent
         title="Please leave feedback"
-        statistic="Statistic" 
-      
       />
     </div>
   );

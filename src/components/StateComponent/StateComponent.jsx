@@ -3,7 +3,7 @@ import FeedbackOptions from "components/FeedbackOptions/FeedbackOptions";
 import Statistics from "components/Statistics/Statistics";
 import Section from "components/Section/Section";
 import Notification from "components/Notification/Notification"
-
+import PropTypes from "prop-types"
 
 
 
@@ -62,9 +62,14 @@ export class StateComponent extends Component {
             </div>
         )
     }
+
+    
 }
 
 
+StateComponent.propTypes = {
+title: PropTypes.string.isRequired,
+};
 
 
 export default StateComponent;

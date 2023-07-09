@@ -1,4 +1,4 @@
-
+import "./GeneralStyles.css"
 import StateComponent from "./StateComponent/StateComponent"
 
 export const App = () => {

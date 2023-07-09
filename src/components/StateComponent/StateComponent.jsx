@@ -1,7 +1,8 @@
 import { Component } from "react";
-import GoodBtn from "components/GoodBtn/GoodBtn";
-import NeutralBtn from "components/NeutralBtn/NeutralBtn";
-import BadBtn from "components/BadBtn/BadBtn";
+import FeedbackOptions from "components/FeedbackOptions/FeedbackOptions";
+import Statistics from "components/Statistics/Statistics";
+import Section from "components/Section/Section";
+import Notification from "components/Notification/Notification"
 import styles from "../GeneralStyles.css"
 
 
@@ -27,54 +28,38 @@ export class StateComponent extends Component {
         return Math.floor(this.state.good / this.countTotalFeedback() * 100)
     }
     
+    handleFeedback = (option) => {
+        this.setState((prevState) => ({
+      [option]: prevState[option] + 1,
+    }));
+    }
 
     render() {
-        const {title, statistic} = this.props
+        const options = ["good", "neutral", "bad"];
+        const {title} = this.props
         const {good, neutral, bad} = this.state
         return (
-             <div className="cardWrap">
-                <h2 className="title">{title}</h2>
-             <ul className="btnList">
-                 <li className="btnItem">
-                        {/* <GoodBtn /> */}
-                        <button type="button" onClick={() => 
-                            this.setState(
-                                {
-                                    ...this.state,
-                                    good: good + 1
-                                })
-                        }>Good</button>
-                 </li>
-                 <li className="btnItem">
-                        {/* <NeutralBtn /> */}
-                        <button type="button" onClick={() =>
-                            this.setState(
-                                {
-                                    ...this.state,
-                                    neutral: neutral + 1
-                                })
-                        }>Neutral</button>
-                 </li>
-                 <li className="btnItem">
-                        {/* <BadBtn /> */}
-                        <button type="button" onClick={() =>
-                            this.setState(
-                                {
-                                    ...this.state,
-                                    bad: bad + 1
-                                })
-                        }>Bad</button>
-                 </li>
-             </ul>
-                <h2>{statistic}</h2>
-             <ul className="resultList">
-                    <li className="resultItem"><p>Good: {good}</p></li>
-                    <li className="resultItem"><p>Neutral: {neutral}</p></li>
-                    <li className="resultItem"><p>Bad: {bad}</p></li>
-                    <li className="resultItem"><p>Total: {this.countTotalFeedback()}</p></li>
-                    <li className="resultItem"><p>Positive fitback: {this.countPositiveFeedbackPercentage()}%</p></li>
-             </ul>
-         </div>
+            <div className="cardWrap">
+                <Section
+                    title={title}
+                />
+                <FeedbackOptions
+                    options={options}
+                    onLeaveFeedback={this.handleFeedback}
+                />
+                {good !== 0 || neutral !== 0 || bad !== 0
+                    ?
+                    <Statistics
+                        good={good}
+                        neutral={neutral}
+                        bad={bad}
+                        total={this.countTotalFeedback()}
+                        positivePercentage={this.countPositiveFeedbackPercentage()}
+                    />
+                    :
+                    <Notification message="There is no feedback" />}
+                              
+            </div>
         )
     }
 }
